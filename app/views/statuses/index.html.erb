@@ -1,3 +1,31 @@
+<!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  
+  <a class="navbar-brand" href="#">Navbar</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Statuses</h1>
@@ -27,3 +55,36 @@
 <br>
 
 <%= link_to 'New Status', new_status_path %>
+-->
+
+<div class="page-header">
+  <h1>Todos los estados</h1>
+</div>
+
+
+<%= link_to "Crear nuevo post", new_status_path, class: "btn btn-success" %>
+
+
+<% @statuses.each do |status| %>
+
+    <div class="status">
+      <strong> <%= status.nombre %>  </strong>
+      <p> <%= status.contenido %> </p>
+
+      <div>
+          <%= link_to "Hace " + time_ago_in_words(status.created_at), status %> |
+          <span class="admin">
+            <%= link_to "Editar", edit_status_path(status) %> | 
+            <%= link_to "Borrar", status, method: :delete, data: {confirm: "¿Estas seguro que quieres borrar este estado?"}  %>
+          </span>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+  <% end %>
